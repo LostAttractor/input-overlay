@@ -44,7 +44,7 @@
 #define T_MONITOR_H_CENTER              T_("Monitor.CenterX")
 #define T_MONITOR_V_CENTER              T_("Monitor.CenterY")
 #define T_USE_EVDEV                     T_("InputSource.UseEvdev")
-#define T_EVDEV_PATH                    T_("InputSource.EvdevPath"/)
+#define T_EVDEV_PATH                    T_("InputSource.EvdevPath")
 
 /* Lang Input History */
 #define T_HISTORY_USE_FALLBACK_NAMES    T_("History.UseFallbackNames")
