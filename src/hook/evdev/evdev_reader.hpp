@@ -75,4 +75,5 @@ private:
     std::thread thread_;
     std::atomic<bool> running_{false};
     std::atomic<int> fd_{-1};
+    int stop_fd_{-1}; ///< eventfd used to wake the reader thread on shutdown
 };
