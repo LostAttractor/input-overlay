@@ -1,3 +1,4 @@
 [submodule "deps/libuiohook"]
 	path = deps/libuiohook
-	url = https://github.com/TolikPylypchuk/libuiohook
+	url = https://github.com/lostattractor/libuiohook
+	branch = evdev

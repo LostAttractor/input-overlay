@@ -157,14 +157,6 @@ void stop()
 
 void start()
 {
-#if defined(__linux__)
-    // Check if we're running on wayland
-    if (obs_get_nix_platform() != OBS_NIX_PLATFORM_X11_EGL) {
-        blog(LOG_WARNING,
-             "[input-overlay] Wayland is not supported by libuiohook. Keyboard an mouse hook will not work.\n");
-        return;
-    }
-#endif
     pthread_mutex_init(&hook_running_mutex, nullptr);
     pthread_mutex_init(&hook_control_mutex, nullptr);
     pthread_cond_init(&hook_control_cond, nullptr);

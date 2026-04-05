@@ -54,6 +54,9 @@ void stop()
 QString serialize_uiohook(const uiohook_event *e, const std::string &source_name)
 {
     QJsonObject obj;
+    auto to_json_int = [](auto value) -> qint64 {
+        return static_cast<qint64>(value);
+    };
     auto ev_to_str = [](int ev_type) {
         switch (ev_type) {
         case EVENT_KEY_TYPED:
@@ -91,9 +94,9 @@ QString serialize_uiohook(const uiohook_event *e, const std::string &source_name
     case EVENT_KEY_RELEASED:
         obj["event_source"] = utf8_to_qt(source_name.c_str());
         obj["event_type"] = QString(ev_to_str(e->type));
-        obj["mask"] = e->mask;
-        obj["keycode"] = e->data.keyboard.keycode;
-        obj["rawcode"] = e->data.keyboard.rawcode;
+        obj["mask"] = to_json_int(e->mask);
+        obj["keycode"] = to_json_int(e->data.keyboard.keycode);
+        obj["rawcode"] = to_json_int(e->data.keyboard.rawcode);
         break;
     case EVENT_MOUSE_CLICKED:
     case EVENT_MOUSE_PRESSED:
@@ -102,22 +105,22 @@ QString serialize_uiohook(const uiohook_event *e, const std::string &source_name
     case EVENT_MOUSE_DRAGGED:
         obj["event_source"] = utf8_to_qt(source_name.c_str());
         obj["event_type"] = QString(ev_to_str(e->type));
-        obj["mask"] = e->mask;
-        obj["button"] = e->data.mouse.button;
-        obj["clicks"] = e->data.mouse.clicks;
-        obj["x"] = e->data.mouse.x;
-        obj["y"] = e->data.mouse.y;
+        obj["mask"] = to_json_int(e->mask);
+        obj["button"] = to_json_int(e->data.mouse.button);
+        obj["clicks"] = to_json_int(e->data.mouse.clicks);
+        obj["x"] = to_json_int(e->data.mouse.x);
+        obj["y"] = to_json_int(e->data.mouse.y);
         break;
     case EVENT_MOUSE_WHEEL:
         obj["event_source"] = utf8_to_qt(source_name.c_str());
         obj["event_type"] = QString(ev_to_str(e->type));
-        obj["mask"] = e->mask;
-        obj["type"] = e->data.wheel.type;
-        obj["delta"] = e->data.wheel.delta;
-        obj["rotation"] = e->data.wheel.rotation;
-        obj["direction"] = e->data.wheel.direction;
-        obj["x"] = e->data.wheel.x;
-        obj["y"] = e->data.wheel.y;
+        obj["mask"] = to_json_int(e->mask);
+        obj["type"] = to_json_int(e->data.wheel.type);
+        obj["delta"] = to_json_int(e->data.wheel.delta);
+        obj["rotation"] = to_json_int(e->data.wheel.rotation);
+        obj["direction"] = to_json_int(e->data.wheel.direction);
+        obj["x"] = to_json_int(e->data.wheel.x);
+        obj["y"] = to_json_int(e->data.wheel.y);
         break;
     default:;
     }
